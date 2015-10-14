@@ -1,0 +1,103 @@
+{# Template père (layout général) #}
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}NTEBlog{% endblock %}</title>
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" type="text/css" />
+      <link rel="stylesheet" href="{{ asset('css/foundation.css') }}" type="text/css" />
+      <script src="{{ asset('js/vendor/custom.modernizr.js') }}"></script>
+    {% endblock %}
+  </head>
+  <body>
+
+	<!-- Nav Bar on top -->
+
+	  <div class="row">
+	    <div class="large-12 columns">
+	      <div class="nav-bar right">
+	       <ul class="button-group">
+	         <li><a class="button" href="{{ path('nteblog_home') }}">Accueil du blog</a></li>
+             <li><a class="button" href="{{ path('nteblog_add') }}">Ajouter un article</a></li>
+	        </ul>
+	      </div>
+	      <h1>The Blog NTE <small>It's awesome.</small></h1>
+	      <hr />
+	    </div>
+	  </div>
+
+	  <!-- End Nav -->
+
+	  <!-- Main Page Content and Sidebar -->
+
+	  <div class="row">
+
+	    <!-- Main Blog Content -->
+	    <div class="large-9 columns" role="content">
+
+		  {% block body %}
+          {% endblock %}
+
+	    </div>
+
+	    <!-- End Main Content -->
+
+	    <!-- Sidebar -->
+
+	    <aside class="large-3 columns">
+
+	      <!-- Menu last posts -->
+	      {{ render(controller("NTEBlogBundle:Blog:menu", {'number': 3})) }}
+
+	      <div class="panel">
+	        <h5>Featured</h5>
+	        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow.</p>
+	        <a href="#">Read More &rarr;</a>
+	      </div>
+
+	    </aside>
+
+	    <!-- End Sidebar -->
+	</div>
+	
+	<!-- End Main Content and Sidebar -->
+
+	<!-- Footer -->
+
+	  <footer class="row">
+	    <div class="large-12 columns">
+	      <hr />
+	      <div class="row">
+	        <div class="large-6 columns">
+	          <p>&copy; Copyright no one at all. Go to town. Webamster :</p>
+	        </div>
+	        <div class="large-6 columns">
+	          <ul class="inline-list right">
+	            <li><a href="#">Link 1</a></li>
+	            <li><a href="#">Link 2</a></li>
+	            <li><a href="#">Link 3</a></li>
+	            <li><a href="#">Link 4</a></li>
+	          </ul>
+	        </div>
+	      </div>
+	    </div>
+	  </footer>
+	  
+	  {% block javascripts %}
+	  <script>
+	  document.write('<script src=js/vendor/' +
+	  ('__proto__' in {} ? 'zepto' : 'jquery') +
+	  '.js><\/script>')
+	  </script>
+	  <script src="js/foundation.min.js"></script>
+	  <script>
+	    $(document).foundation();
+	  </script>
+	  {% endblock %}
+
+	<!-- End Footer -->
+
+  </body>
+</html>

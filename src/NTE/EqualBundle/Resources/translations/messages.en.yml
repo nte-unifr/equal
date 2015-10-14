@@ -1,0 +1,76 @@
+projet_title:               Equal+
+menu:						Menu
+contact:					Contact
+unifr_title:				- Equal - University of Fribourg
+unifr_title2:				University of Fribourg
+
+#GLOBAL
+more_details:               More infos
+button_end:                 Finish
+score_text:                 Score
+score_moyenne_text:         Average
+feedback_score_text:        Feedback
+point_text:                 Point(s)
+close:						Close
+print:						Print
+
+#EVALUATION
+eval_evaluation:			Evaluation
+eval_results:               Results of self-assessment
+eval_thanks:                Thank you very much for your participation!
+eval_thanks_desc:           Self-assessment is completed.
+eval_next_button_desc:      (Please answer all questions.)
+eval_next_button:           Next
+eval_end_text:              End of self-assessment
+eval_choose_dim_text:       Please select the dimensions you wish to assess:
+eval_buttonA:               Start self-assessment
+answer:                     Answer
+details:                    Summary of your answers
+print_alert:                If you want to save the results of your self-assessment,<br />please print or save this page as PDF now.
+eval_redirect:		    	You will be redirected to the beginning of the self-assessment.
+
+#ENONCES
+enonceA:                    Entirely
+enonceB:                    Rather yes
+enonceC:                    Rather no
+enonceD:                    Not at all
+enonceE:                    Does not apply
+
+#FOOTER
+footer_text:                Conception and realization :<br /><a href="http://www.unifr.ch/didactic/fr/recherche/projet-e-qual2" target="_blank">Projet Equal+</a> & <a href="http://nte.unifr.ch" target="_blank">Centre NTE</a> - University of Fribourg - Switzerland
+
+#SONATA ADMIN
+admin.label_approches:		Approaches
+admin.label_dimensions:		Dimensions
+admin.label_items:			Items
+admin.label_feedback:		Feedbacks
+admin.label_biblio:			Bibliography
+admin.label_glossaire:		Glossary
+admin.label_pages:			Pages
+admin.label_menu:			Menu
+admin.group_admin:			Administration
+admin.group_content:		Content
+admin.group_eval:           Self-assessment
+
+admin.label_nom:			Name
+admin.label_special:		Type of page
+admin.label_titre:			Title
+admin.label_show_title:		Show title
+admin.label_titre_menu:		Menu title (left)
+admin.label_titre_menu_top:	Menu title (top)
+admin.label_breadcrumb:		Breadcrumb
+admin.label_soustitre:		Subtitle
+admin.label_description:	Description
+admin.label_langue:			Language
+admin.label_approche:		Approach
+admin.label_dimension:		Dimension
+admin.label_liminf:			Lower limit
+admin.label_limsup:			Upper limit
+admin.label_ordre:			Order
+admin.label_intro:			Introduction
+admin.label_texte:			Text
+admin.label_parent:			Parent
+
+admin.tab_content:			Content
+admin.tab_param:			View parameters
+admin.tab_properties:		Properties

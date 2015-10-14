@@ -1,0 +1,50 @@
+{#
+ * Copyright 2014 Centre NTE <http://nte.unifr.ch>, Université de Fribourg, Suisse
+ * 
+ * This file is part of Equal+.
+ *
+ * Equal+ is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Equal+ is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Equal+.  If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+
+{# extension of CRUD show orm one to many#}
+
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+ <ul class="sonata-ba-show-one-to-many">
+    {% if field_description.hasassociationadmin and field_description.associationadmin.isGranted('EDIT') and field_description.associationadmin.hasRoute('edit') %}
+		{% for element in value%}
+	         <li><a href="{{ field_description.associationadmin.generateObjectUrl(field_description.options.route.name, element, field_description.options.route.parameters) }}">{{ element|render_relation_element(field_description) }}
+				<ul>
+					{% for el in element.items %}
+				        <li><a href="{{ path('admin_nte_equal_equalitems_edit', {"id" : el.id}) }}">{{ el|render_relation_element(field_description) }}
+				            </a></li>
+				    {% endfor %}
+				</ul>
+	         </a></li>
+    	{% endfor %}
+        {% else %}
+        {% for element in value%}
+            <li>{{ element|render_relation_element(field_description) }}
+				<ul>
+					{% for el in element.items %}
+				        <li>{{ el|render_relation_element(field_description) }}</li>
+				    {% endfor %}
+				</ul>
+            </li>
+        {% endfor %}
+    {% endif %}
+ </ul>
+{% endblock %}

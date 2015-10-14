@@ -1,0 +1,119 @@
+{#
+ * Copyright 2014 Centre NTE <http://nte.unifr.ch>, Université de Fribourg, Suisse
+ * 
+ * This file is part of Equal+.
+ *
+ * Equal+ is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Equal+ is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Equal+.  If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+
+{# src/NTE/EqualBundle/Resources/views/Default/approche.html.twig #}
+
+{# extends 'NTEEqualBundle:Default:index.html.twig' #}
+{# called by generatePageAction from page template #}
+
+{% block equal_content %}
+
+	<br />
+	<p id="chooseDim">{{ 'eval_choose_dim_text'|trans }}</p>
+	
+	<div class="dimension-select">
+		
+
+		<div>
+			<form id="formDim" action="{{ path('equal_app_eval', {'approche_id' : app.session.get('id_approche') }) }}" method="post">
+				<table class="table">
+				{% for d in dim %}
+					<tr>
+						<td>
+							<input type="checkbox" id="equalapprochestype_dimensions_{{ d.id }}" name="equalapprochestype[dimensions][]" value="{{ d.id }}">
+						</td>
+						<td>{{ d.nom }} <a href="#myModal{{ d.id }}" class="label-info-modal" role="button" data-toggle="modal"><img src="{{ asset('bundles/nteequal/images/info.png') }}" class="img-info" alt="{{ 'more_details'|trans }}" title="Infos"></a>
+							<!--<a href="description/dimension/{{ d.id }}" rel="popup console 830 600" title=" [Opens in pop-up window]" style="background-image: url(http://www.unifr.ch/didactic/eval/images/icon-popup.gif); padding-left: 15px; background-position: 0px 50%; background-repeat: no-repeat no-repeat;"><img src="images/info.png" class="img-info" alt="{{ 'more_details'|trans }}" title="Infos"></a>-->
+						</td>
+ 
+						<!-- Modal -->
+						<div id="myModal{{ d.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-header">
+						    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						    <a class="printing" href="javascript:window.print()"><img src="{{ asset('bundles/nteequal/images/print.png') }}" alt="{{ 'print'|trans }}" border="0"></a>
+						    <h2 id="myModalLabel">{{ d.approche.nom }}</h2>
+						    <h3>{{ d.nom }}</h3>
+						  </div>
+						  <div class="modal-body">
+						    <p class="glo-content">{{ d.description|replace({'href="/equal': 'rel="popup console 830 600" href="/equal' })|raw }}</p>
+						  </div>
+						  <div class="modal-footer">
+						    <button class="btn" data-dismiss="modal" aria-hidden="true">{{ 'close'|trans }}</button>
+						  </div>
+						</div>
+					</tr>
+				{% endfor %}
+				</table>
+				<p class="text-center"><input name="formDimSubmit" type="submit" value="{{ 'eval_buttonA'|trans }}" /></p>
+				<input type="hidden" name="id_approche" value="{{ app.session.get('id_approche') }}" />
+				<input type="hidden" name="begin" value="true" />
+			</form>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="{{ asset('bundles/nteequal/js/rescale_modal.js') }}"></script>	
+	
+	<script>
+		$( "form" ).submit(function( event ) {
+			var count = $("[type='checkbox']:checked").length;
+			if (count > 0) {
+				return;
+			}
+		 
+			$( "#chooseDim" ).css( "color", "red" );
+			event.preventDefault();
+		});
+
+		$( ".close, .printing, .btn" ).click(function() {
+		  $( "#webpage2" ).toggleClass("not-modal");
+		});
+/*		
+		$(document).ready(function() {
+		var bodyheight = $(document).height();
+    		bodyheight = bodyheight*0.3;
+    		var newheight = bodyheight+"px";
+		$(".modal-body").css({"max-height": newheight});
+		$(window).resize(function() {
+    		var bodyheight = $(document).height();
+    		bodyheight = bodyheight*0.3;
+    		var newheight = bodyheight+"px";
+    		$(".modal-body").css({"max-height": newheight});
+		}); });
+*/
+
+/*
+		$(document).ready(function() {
+		    $(".label-info-modal").click(function() {
+		    	var id = $(this).attr('href');
+		        rescale(id);
+		    });
+		});
+		function rescale(id){
+		    var size = {width: $(window).width() , height: $(window).height() }
+		    var offset = 50;
+		    var offsetBody = 170;
+		    $('.modal-body').css('height', size.height - (offset + offsetBody));
+		    $(id).css('top', '10px' );
+		}
+		$(window).bind("resize", rescale);
+*/
+	</script>
+
+{% endblock %}

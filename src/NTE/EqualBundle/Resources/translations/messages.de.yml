@@ -1,0 +1,76 @@
+projet_title:               Equal+
+menu:						Menu
+contact:					Kontact
+unifr_title:				- Equal - Universität Freiburg
+unifr_title2:				Universität Freiburg
+
+#GLOBAL
+more_details:               Mehr
+button_end:                 Beenden
+score_text:                 Score
+score_moyenne_text:         Durchschnitt
+feedback_score_text:        Feedback
+point_text:                 Punkt(e)
+close:						Schliessen
+print:						Ausdrucken
+
+#EVALUATION
+eval_evaluation:			Evaluation
+eval_results:               Ergebnis der Selbstevaluation
+eval_thanks:                Vielen Dank für Ihre Teilnahme!
+eval_thanks_desc:           Die Selbstevaluation ist beendet.
+eval_next_button_desc:      (Bitte beantworten Sie alle Fragen.)
+eval_next_button:           weiter
+eval_end_text:              Ende der Selbstevaluation
+eval_choose_dim_text:       Wählen Sie die Dimensionen aus, die Sie evaluieren möchten:
+eval_buttonA:               Selbstevaluation starten
+answer:                     Antwort
+details:                    Zusammenstellung Ihrer Antworten
+print_alert:                Wenn Sie das Ergebnis Ihrer Selbstevaluation sichern möchten,<br />müssen Sie diese Seite jetzt ausdrucken oder als pdf speichern.
+eval_redirect:		    Sie werden an den Anfang der Selbsteinschätzung weitergeleitet.
+
+#ENONCES
+enonceA:                    trifft völlig zu
+enonceB:                    trifft eher zu
+enonceC:                    trifft eher nicht zu
+enonceD:                    trifft gar nicht zu
+enonceE:                    nicht anwendbar
+
+#FOOTER
+footer_text:                Konzeption und Realisation :<br /><a href="http://www.unifr.ch/didactic/de/recherche/projet-e-qual2" target="_blank">Projet Equal+</a>& <a href="http://nte.unifr.ch" target="_blank">Centre NTE</a> - Université de Fribourg - Suisse
+
+#SONATA ADMIN
+admin.label_approches:		Ansätze
+admin.label_dimensions:		Dimensionen
+admin.label_items:			Items
+admin.label_feedback:		Feedbacks
+admin.label_biblio:			Literatur
+admin.label_glossaire:		Glossar
+admin.label_pages:			Seiten
+admin.label_menu:			Menu
+admin.group_admin:			Administration
+admin.group_content:		Inhalt
+admin.group_eval:                       Selbstevaluation
+
+admin.label_nom:			Name
+admin.label_special:		Art der Seite
+admin.label_titre:			Titel
+admin.label_show_title:		Anzeige der Titel
+admin.label_titre_menu:		Menütitel (links)
+admin.label_titre_menu_top:	Menütitel (top)
+admin.label_breadcrumb:		Breadcrumb
+admin.label_soustitre:		Untertitel
+admin.label_description:	Beschreibung
+admin.label_langue:			Sprache
+admin.label_approche:		Ansatz
+admin.label_dimension:		Dimension
+admin.label_liminf:			Untergrenze
+admin.label_limsup:			Höchstgrenze
+admin.label_ordre:			Reihenfolge
+admin.label_intro:			Introduction
+admin.label_texte:			Text
+admin.label_parent:			Vorläufer
+
+admin.tab_content:			Inhalt
+admin.tab_param:			Anzeigeeinstellungen
+admin.tab_properties:		Eigenschaften

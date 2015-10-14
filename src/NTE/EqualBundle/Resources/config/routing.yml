@@ -1,0 +1,105 @@
+# MIGRATION
+# equal_migration:
+#     pattern:      /_migration
+#     defaults:  { _controller: NTEEqualBundle:Migration:index }
+
+# equal_migration_temp:
+#     pattern:      /_migration/temp
+#     defaults:  { _controller: NTEEqualBundle:Migration:temp }
+# equal_migration_delete:
+#     pattern:      /_migration/delete
+#     defaults:  { _controller: NTEEqualBundle:Migration:delete }
+# equal_migration_app:
+#     pattern:      /_migration/app
+#     defaults:  { _controller: NTEEqualBundle:Migration:app }
+# equal_migration_dim:
+#     pattern:      /_migration/dim
+#     defaults:  { _controller: NTEEqualBundle:Migration:dim }
+# equal_migration_item:
+#     pattern:      /_migration/item
+#     defaults:  { _controller: NTEEqualBundle:Migration:item }
+# equal_migration_feed:
+#     pattern:      /_migration/feed
+#     defaults:  { _controller: NTEEqualBundle:Migration:feed }
+# equal_migration_biblio:
+#     pattern:      /_migration/biblio
+#     defaults:  { _controller: NTEEqualBundle:Migration:biblio }
+# equal_migration_glo:
+#     pattern:      /_migration/glo
+#     defaults:  { _controller: NTEEqualBundle:Migration:glo }
+# equal_migration_glourl:
+#     pattern:      /_migration/findglourl
+#     defaults:  { _controller: NTEEqualBundle:Migration:glourl }
+# equal_migration_bibliourl:
+#     pattern:      /_migration/findbibliourl
+#     defaults:  { _controller: NTEEqualBundle:Migration:bibliourl }
+# equal_migration_pages:
+#     pattern:     /_migration/pages
+#     defaults:  { _controller: NTEEqualBundle:Migration:pages }
+
+# NTE - Equal routes
+equal_page_slug_by_app_id:
+    pattern:      /{_locale}/{app_id}
+    defaults:  { _controller: NTEEqualBundle:Default:generatePage2 }
+    requirements:
+        app_id: \d+
+        _locale: fr|de
+
+equal_page_slug:
+    pattern:      /{_locale}/{slug}
+    defaults:  { _controller: NTEEqualBundle:Default:generatePage, page_id: 0, slug: '_' }
+    requirements:
+        _locale: fr|de
+
+equal_page_slug_home:
+    pattern:     /
+    defaults:  { _controller: NTEEqualBundle:Default:generatePage, page_id: 0, slug: '_' }
+
+equal_home:
+    pattern:      /{_locale}/{page_id}
+    defaults:  { _controller: NTEEqualBundle:Default:generatePage, page_id: 1, _locale: fr }
+    requirements:
+        page_id: \d+
+        _locale: fr|de
+
+equal_page:
+    pattern:      /{_locale}/page/{page_id}
+    defaults:  { _controller: NTEEqualBundle:Default:generatePage, slug: '' }
+    requirements:
+        page_id: \d+
+        _locale: fr|de
+
+equal_approche:
+    pattern:      /{_locale}/page/{page_id}/a/{approche_id}
+    defaults:  { _controller: NTEEqualBundle:Default:generatePage }
+    requirements:
+        page_id: \d+
+        approche_id: \d+
+        _locale: fr|de
+
+equal_app_eval:
+    pattern:      /{_locale}/a/{approche_id}/eval
+    defaults:  { _controller: NTEEqualBundle:Default:dimension }
+    requirements:
+        dimension_id: \d+
+        approche_id: \d+
+        _locale: fr|de
+
+equal_result:
+    pattern:      /{_locale}/a/{approche_id}/results
+    defaults:  { _controller: NTEEqualBundle:Default:result }
+    requirements:
+        _locale: fr|de
+
+equal_descr_dim:
+    pattern:      /{_locale}/description/dimension/{dim_id}
+    defaults:  { _controller: NTEEqualBundle:Default:descrDim }
+    requirements:
+        _locale: fr|de
+
+equal_descr_item:
+    pattern:      /{_locale}/description/item/{item_id}
+    defaults:  { _controller: NTEEqualBundle:Default:descrItem }
+    requirements:
+        _locale: fr|de
+

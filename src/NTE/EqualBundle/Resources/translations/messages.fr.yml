@@ -1,0 +1,76 @@
+projet_title:               Equal+
+menu:						Menu
+contact:					Contact
+unifr_title:				- Equal - Université de Fribourg
+unifr_title2:				Université de Fribourg
+
+#GLOBAL
+more_details:               Plus d'infos
+button_end:                 Terminer
+score_text:                 Score
+score_moyenne_text:         Moyenne
+feedback_score_text:        Feedback
+point_text:                 Point(s)
+close:						Fermer
+print:						Imprimer
+
+#EVALUATION
+eval_evaluation:			Evaluation
+eval_results:               Résultats de l'auto-évaluation
+eval_thanks:                Merci beaucoup pour votre participation !
+eval_thanks_desc:           L'auto-évaluation est terminée.
+eval_next_button_desc:      (Veuillez répondre à toutes les questions svp.)
+eval_next_button:           Suivant
+eval_end_text:              Fin de l'auto-évaluation
+eval_choose_dim_text:       Veuillez choisir les dimensions que vous désirez évaluer :
+eval_buttonA:               Démarrer l'auto-évaluation
+answer:                     Réponse
+details:                    Récapitulation de vos réponses
+print_alert:                Si vous désirez sauvegarder les résultats de votre auto-évaluation,<br />veuillez imprimer ou sauvegarder cette page en pdf maintenant.
+eval_redirect:		    Vous allez être redirigé vers le début de l'auto-évaluation.
+
+#ENONCES
+enonceA:                    Tout à fait
+enonceB:                    Plutôt oui
+enonceC:                    Plutôt non
+enonceD:                    Pas du tout
+enonceE:                    Ne s'applique pas
+
+#FOOTER
+footer_text:                Conception et réalisation :<br /><a href="http://www.unifr.ch/didactic/fr/recherche/projet-e-qual2" target="_blank">Projet Equal+</a> & <a href="http://nte.unifr.ch" target="_blank">Centre NTE</a> - Université de Fribourg - Suisse
+
+#SONATA ADMIN
+admin.label_approches:		Approches
+admin.label_dimensions:		Dimensions
+admin.label_items:			Items
+admin.label_feedback:		Feedbacks
+admin.label_biblio:			Bibliographie
+admin.label_glossaire:		Glossaire
+admin.label_pages:			Pages
+admin.label_menu:			Menu
+admin.group_admin:			Administration
+admin.group_eval:			Auto-évaluation
+admin.group_content:		Contenu
+
+admin.label_nom:			Nom
+admin.label_special:		Type de page
+admin.label_titre:			Titre
+admin.label_show_title:		Afficher le titre
+admin.label_titre_menu:		Titre menu (gauche)
+admin.label_titre_menu_top:	Titre menu (haut)
+admin.label_breadcrumb:		Fil d'Ariane
+admin.label_soustitre:		Sous-titre
+admin.label_description:	Description
+admin.label_langue:			Langue
+admin.label_approche:		Approche
+admin.label_dimension:		Dimension
+admin.label_liminf:			Limite inférieure
+admin.label_limsup:			Limite supérieure
+admin.label_ordre:			Ordre
+admin.label_intro:			Introduction
+admin.label_texte:			Texte
+admin.label_parent:			Parent
+
+admin.tab_content:			Contenu
+admin.tab_param:			Paramètres d'affichage
+admin.tab_properties:		Propriétés

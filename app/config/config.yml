@@ -1,0 +1,248 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: fr }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         ~
+    session:
+        save_path: %kernel.root_dir%/var/sessions
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: %kernel.root_dir%/Resources/java/compiler.jar
+        #yui_css:
+        #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        #auto_mapping: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    FOSUserBundle: ~
+                    SonataUserBundle: ~
+                    ApplicationSonataUserBundle: ~
+                    SonataMediaBundle: ~
+                    ApplicationSonataMediaBundle: ~
+                    gedmo_translator:
+                        type: annotation
+                        prefix: Gedmo\Translator\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                        alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }
+
+# Stof\DoctrineExtensionBundle Configuration
+stof_doctrine_extensions:
+    default_locale: fr_CH #
+    translation_fallback: true
+    orm:
+        default:
+            sluggable: true
+            tree: false #new
+            timestampable: false #new
+            sortable : true #new
+            translatable: false #new
+
+# Sonata
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.block.service.text:
+        sonata.block.service.action:
+        sonata.block.service.rss:
+
+sonata_admin:
+    title: Equal
+    templates:
+        ## default global templates
+        layout: NTEEqualBundle:Default:multilang_layout.html.twig
+        ajax: SonataAdminBundle::ajax_layout.html.twig
+
+        ## default actions templates, should extend a global templates
+        list: SonataAdminBundle:CRUD:list.html.twig
+        show: SonataAdminBundle:CRUD:show.html.twig
+        edit: SonataAdminBundle:CRUD:edit.html.twig
+        history: SonataAdminBundle:CRUD:history.html.twig
+        preview: SonataAdminBundle:CRUD:preview.html.twig
+        delete: SonataAdminBundle:CRUD:delete.html.twig
+    dashboard:
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+            -
+                position: right
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h3>Bienvenue dans la zone d'administration d'Equal+</h3>
+                        <p>Voici quelques indications concernant l'administration du contenu :</p>
+                        <h4>Remarque importante</h4>
+                        <p><em><strong>Attention</strong></em>, le fait de créer des approches, dimensions et items ne va pas créer la page d'évaluation pour ces éléments ! Il faut absolument créer une page (voir ci-dessous) et lui affecter l'approche voulue pour afficher le questionnaire d'évaluation.</p>
+                        <h4>Pages</h4>
+                        <p>C'est là que vous créez les pages (et donc les menus) pour votre application. Les champs présentés ci-après sont organisés dans trois onglets :
+                        <ul>
+                        <li>Contenu</li>
+                        <li>Propriétés</li>
+                        <li>Paramètres d'affichage</li>
+                        </ul>
+                        </p>
+                        <p><strong>Champs obligatoires (*) :</strong><br />
+                        <ul>
+                        <li><strong>Langue</strong></li>
+                        <li><strong>Position</strong> : définit la position de la page dans le menu. La numérotation est censée recommencer pour les sous-pages.<br />
+                        Exemple :
+                        <ol>
+                        <li>Accueil</li>
+                        <ol>
+                        <li>Introduction</li>
+                        <li>Utilisation</li>
+                        <li>Conception</li>
+                        </ol>
+                        <li>Auto-éval enseignement</li>
+                        <ol>
+                        <li>Approche implicite</li>
+                        <li>Approche explicite</li>
+                        </ol>
+                        </ol>
+                        </li>
+                        <li><strong>Titre</strong> : définit le titre la page. Ce titre est présent sur chaque page dans la zone centrale, et appraît comme titre de fenêtre/onglet. De plus, le titre est la valeur par défaut utilisée pour afficher le menu si <em>Titre menu (gauche)</em> et/ou <em>Titre menu (haut)</em> ne sont pas utilisés (voir ci-dessous).</li>
+                        </ul>
+                        </p>
+                        <p><strong>Champs optionnels :</strong><br />
+                        <ul>
+                        <li><strong>Texte</strong> : définit le contenu de la page. C'est la partie importante où vous ajoutez/modifiez/supprimez du contenu pour vos pages.</li>
+                        <li><strong>Parent</strong> : définit si une page possède une page parente. Dans l'exemple du menu ci-dessus, la page <em>Introduction</em> a comme page parente <em>Home</em>.</li>
+                        <li><strong>Top</strong> : cette case est à cocher si vous souhaitez que la page apparaisse dans le menu horizontal. Si la case n'est pas cochée, la page apparaîtra uniquement dans le menu de gauche.</li>
+                        <li><strong>Afficher le titre</strong> : cette case est à cocher si vous souhaitez que le titre spécifié ci-dessus apparaisse sur la page. Si la case n'est pas cochée, le titre n'apparaîtra pas sur la page.</li>
+                        <li><strong>Approche</strong> : si la page en question est une page d'évaluation d'une approche, il faut alors choisir l'approche correspondante.<br />
+                        <em><strong>Attention</strong></em> : le contenu du champ <em>Texte</em> n'apparaîtra pas sur ce type de page, car elle a été formatée pour lister les dimensions qui lui sont liées. Le champ <em>Texte</em> doit rester <strong>vide</strong>.
+                        </li>
+                        <li><strong>Type de page</strong> : pour les pages <em>Bibliographie</em> et <em>Glossaire</em> uniquement ! Comme pour le champ <em>Approche</em> ci-dessus, cela permet de lister toutes les bibliographies en choisissant <em>biblio</em>, et tout le glossaire en choisissant <em>glossaire</em>.<br />
+                        <em><strong>Attention</strong></em> : le contenu du champ <em>Texte</em> n'apparaîtra pas sur ce type de page, car elle a été formatée pour lister les bibliographies/glossaire. Le champ <em>Texte</em> doit rester <strong>vide</strong>.
+                        </li>
+                        <li><strong>Titre menu (gauche)</strong> : si vous souhaitez un titre plus court pour la liste des pages dans le menu, il faut remplir ce champ.
+                        </li>
+                        <li><strong>Titre menu (haut)</strong> : de même pour pour le menu horizontal.</li>
+                        <li><strong>Sous-titre</strong></li>
+                        <li><strong>Introduction</strong></li>
+                        <li><strong>Fil d'ariane</strong> : cette case est à cocher si vous souhaitez que le fil d'Ariane (permet d'indiquer aux visiteurs où ils se trouvent en listant les éléments du menu) apparaisse sous le menu horizontal.</li>
+                        </ul>
+                        </p>
+
+sonata_user:
+    security_acl: false
+    class:
+        user: NTE\EqualBundle\Entity\User
+        group: NTE\EqualBundle\Entity\Group
+    admin:
+        user:
+            class: Sonata\UserBundle\Admin\Entity\UserAdmin
+            controller: SonataAdminBundle:CRUD
+            translation: SonataUserBundle
+        group:
+            class: Sonata\UserBundle\Admin\Entity\GroupAdmin
+            controller: SonataAdminBundle:CRUD
+            translation: SonataUserBundle
+    profile:
+        form:
+            type: sonata_user_profile
+            handler: sonata.user.profile.form.handler.default
+            name: sonata_user_profile_form
+            validation_groups: [Profile]
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: NTE\EqualBundle\Entity\User
+    group:
+        group_class: NTE\EqualBundle\Entity\Group
+    profile:  # Authentication Form
+        form:
+            type:               fos_user_profile
+            #handler:            fos_user.profile.form.handler.default
+            name:               fos_user_profile_form
+            #validation_groups:  [Authentication] # Please note : this is not the default value
+
+sonata_media:
+    providers:
+        file:
+            allowed_extensions: ['mp4', 'flv']
+            allowed_mime_types: ['video/mp4', 'video/x-flv']
+        image:
+            allowed_extensions: ['jpg', 'png', 'gif', 'jpeg']
+            allowed_mime_types: ['image/pjpeg','image/jpeg','image/png','image/x-png', 'image/gif']
+    default_context: default
+    db_driver: doctrine_orm # or doctrine_mongodb
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../web/uploads/media
+            create:     false

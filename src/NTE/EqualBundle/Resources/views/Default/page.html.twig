@@ -1,0 +1,89 @@
+{#
+ * Copyright 2014 Centre NTE <http://nte.unifr.ch>, Université de Fribourg, Suisse
+ * 
+ * This file is part of Equal+.
+ *
+ * Equal+ is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Equal+ is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Equal+.  If not, see <http://www.gnu.org/licenses/>.
+ #}
+
+
+{# src/NTE/EqualBundle/Resources/views/Default/page.html.twig #}
+
+{% extends 'NTEEqualBundle:Default:index.html.twig' %}
+
+{% block equal_title %}
+   {% if currentPage != null %} {{ currentPage.title|striptags }} - {% endif%} {{ 'unifr_title2'|trans }}
+{% endblock %}
+
+
+{% block equal_content %}
+    {% if currentPage.showBreadcrumb == true %}
+    <ul class="breadcrumb">
+        <li><a href="{{ path('equal_page_slug', {'_locale': app.request.locale }) }}"><i class="icon-home"></i></a>  <span class="divider">/</span></li>
+        {% if currentPage.parent == null %}
+            <li class="active">{% if currentPage.titleMenuLeft != null %}{{ currentPage.titleMenuLeft|raw }}{% else %}{{ currentPage.title|raw }}{% endif %}</li>
+        {% else %}
+            {% set cur = currentPage %}
+            {% set arr = [] %} 
+            {% for i in 0..10 if cur.parent != null %}
+                {% set arr = arr|merge([cur, cur.parent]) %} 
+                {% set cur = cur.parent.parent %}
+            {% endfor %}
+            {% set arr = arr|reverse %}
+            {% for a in arr %}
+                {% if loop.last %}
+                    <li class="active">{% if a.titleMenuLeft != null %}{{ a.titleMenuLeft|raw }}{% else %}{{ a.title|raw }}{% endif %}</li>
+                {% else %}
+                    <li><a href="{{ path('equal_page_slug', {'slug': a.slug }) }}">
+                    {% if a.titleMenuLeft != null %}{{ a.titleMenuLeft|raw }}{% else %}{{ a.title|raw }}{% endif %}</a> <span class="divider">/</span></li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </ul>
+    {% endif %}
+    
+    <div>
+        {% if currentPage.showTitle == true %}
+	<h1>{{ currentPage.title|raw }}</h1>
+	{% endif %}
+
+        {% if currentPage.approche == null %}
+            {% if (currentPage.special != null) and ((currentPage.special.nom == 'glossaire') or (currentPage.special.nom == 'biblio')) %}
+                {{ render(controller('NTEEqualBundle:Default:' ~ currentPage.special.nom)) }}
+            {% else %}
+
+                {% if currentPage.subtitle != null %}<h2>{{ currentPage.subtitle|raw }}</h2>{% endif %}</h2>
+                
+                    {% if currentPage.introduction != null %}
+                        <p>
+                            <strong>
+                            {{ currentPage.introduction|replace({'href="glossaire': 'href="/equal/fr/glossaire' })|replace({'href="glossar': 'href="/equal/de/glossar' })|raw }}
+                            </strong>
+                        </p>
+                    {% endif %}
+                    
+                
+                    {% if currentPage.text is defined %}
+                        <p>{{ currentPage.text|replace({'href="glossaire': 'href="/equal/fr/glossaire' })|replace({'href="glossar': 'href="/equal/de/glossar' })|raw }}</p>
+                    {% endif %}
+                
+
+            {% endif %}
+        {% else %}
+           {{ render(controller('NTEEqualBundle:Default:approche', { 'approche_id': currentPage.approche.id })) }}
+        {% endif %}
+    </div>
+    
+    
+{% endblock %}

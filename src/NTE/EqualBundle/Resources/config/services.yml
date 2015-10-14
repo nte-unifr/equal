@@ -1,0 +1,48 @@
+services:
+    nte_equal.admin.equal_approches:
+        class: NTE\EqualBundle\Admin\EqualApprochesAdmin
+        arguments: [~, NTE\EqualBundle\Entity\EqualApproches, NTEEqualBundle:EqualApprochesAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.group_eval, label_catalogue: messages, label: admin.label_approches}
+
+    nte_equal.admin.equal_dimensions:
+        class: NTE\EqualBundle\Admin\EqualDimensionsAdmin
+        arguments: [~, NTE\EqualBundle\Entity\EqualDimensions, NTEEqualBundle:EqualDimensionsAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.group_eval, label_catalogue: messages, label: admin.label_dimensions}
+
+    nte_equal.admin.equal_items:
+        class: NTE\EqualBundle\Admin\EqualItemsAdmin
+        arguments: [~, NTE\EqualBundle\Entity\EqualItems, NTEEqualBundle:EqualItemsAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.group_eval, label_catalogue: messages, label: admin.label_items}
+
+    nte_equal.admin.equal_feedbacks:
+        class: NTE\EqualBundle\Admin\EqualFeedbacksAdmin
+        arguments: [~, NTE\EqualBundle\Entity\EqualFeedbacks, NTEEqualBundle:EqualFeedbacksAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.group_eval, label_catalogue: messages, label: admin.label_feedback}
+
+    nte_equal.admin.pages:
+        class: NTE\EqualBundle\Admin\PagesAdmin
+        arguments: [~, NTE\EqualBundle\Entity\Pages, NTEEqualBundle:PagesAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.group_content, label_catalogue: messages, label: admin.label_pages}
+
+    nte_equal.admin.equal_biblio:
+        class: NTE\EqualBundle\Admin\EqualBiblioAdmin
+        arguments: [~, NTE\EqualBundle\Entity\EqualBiblio, NTEEqualBundle:EqualBiblioAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.group_content, label_catalogue: messages, label: admin.label_biblio}
+
+    nte_equal.admin.equal_glossaire:
+        class: NTE\EqualBundle\Admin\EqualGlossaireAdmin
+        arguments: [~, NTE\EqualBundle\Entity\EqualGlossaire, NTEEqualBundle:EqualGlossaireAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.group_content, label_catalogue: messages, label: admin.label_glossaire}
+
+    #nte_equal.admin.equal_special_page:
+    #    class: NTE\EqualBundle\Admin\SpecialPageAdmin
+    #    arguments: [~, NTE\EqualBundle\Entity\SpecialPage, NTEEqualBundle:SpecialPageAdmin]
+    #    tags:
+    #        - {name: sonata.admin, manager_type: orm, group: admin.group_admin, label_catalogue: messages, label: admin.label_special}

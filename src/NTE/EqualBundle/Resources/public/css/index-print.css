@@ -1,0 +1,32 @@
+body, #navigBarre, a, .container-m, .table-list, .row-fluid, #webpage2{
+	background-color: #fff;
+	background-image: none;
+	color: #000;
+	border-top-color: #fff;
+	border-right-color: #fff;
+	border-bottom-color: #fff;
+	border-left-color: #fff;
+	border-color: #fff;
+}
+
+#menu, #footer, #signature, #navigBarre, #identity, .navbar, p.top, p.ficheTitle, .btn-navbar, .brand {
+	display: none;
+}
+
+a:link:after,
+a:visited:after {
+  content: "";
+}
+
+.modal {
+	visibility: visible;
+	width: auto;
+	border: 0px;
+}
+.modal-body {
+	overflow-y: visible;
+}
+
+.not-modal, .modal-footer, .btn {
+	visibility: hidden;
+}
