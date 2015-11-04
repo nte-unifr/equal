@@ -2,7 +2,7 @@
 
 /**
  * Copyright 2014 Centre NTE <http://nte.unifr.ch>, Université de Fribourg, Suisse
- * 
+ *
  * This file is part of Equal+.
  *
  * Equal+ is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Equal+.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -80,7 +80,7 @@ class DefaultController extends Controller
 					 ->getManager()
 					 ->getRepository('NTEEqualBundle:EqualGlossaire')
 					 ->getGlossaireAlpha($langue);
-	
+
 		return $this->render('NTEEqualBundle:Default:biblio-glossaire.html.twig', array(
 			'entries' => $glossaire,
 			'alpha' => $alpha
@@ -100,7 +100,7 @@ class DefaultController extends Controller
 		if (!$langue) {
 			$langue = 1;
 		}
-		
+
 		$biblio = $this->getDoctrine()
 					 ->getManager()
 					 ->getRepository('NTEEqualBundle:EqualBiblio')
@@ -110,7 +110,7 @@ class DefaultController extends Controller
 					 ->getManager()
 					 ->getRepository('NTEEqualBundle:EqualBiblio')
 					 ->getBiblioAlpha($langue);
-	
+
 		return $this->render('NTEEqualBundle:Default:biblio-glossaire.html.twig', array(
 			'entries' => $biblio,
 			'alpha' => $alpha
@@ -124,7 +124,7 @@ class DefaultController extends Controller
 					 ->getRepository('NTEEqualBundle:EqualDimensions')
 					 ->findOneById($dim_id);
 		$approche = $entry->getApproche()->getNom();
-	
+
 		return $this->render('NTEEqualBundle:Default:description.html.twig', array(
 			'entry' => $entry,
 			'approche' => $approche
@@ -138,7 +138,7 @@ class DefaultController extends Controller
 					 ->getRepository('NTEEqualBundle:EqualItems')
 					 ->findOneById($item_id);
 		$approche = $entry->getDimension()->getApproche()->getNom();
-	
+
 		return $this->render('NTEEqualBundle:Default:description.html.twig', array(
 			'entry' => $entry,
 			'approche' => $approche
@@ -165,21 +165,21 @@ class DefaultController extends Controller
 		{
 			$session->remove('dimension_number');
 		}
-		
-		if (!$session->has('id_candidat') || $session->has('id_candidat')) 
+
+		if (!$session->has('id_candidat') || $session->has('id_candidat'))
 		{
 			$candidat = self::createIdAction(8);
 			$session->set('id_candidat', $candidat);
 		}
-		if ($session->has('nbItems')) 
+		if ($session->has('nbItems'))
 		{
 			$session->remove('nbItems');
 		}
-		if ($session->has('response')) 
+		if ($session->has('response'))
 		{
 			$session->remove('response');
 		}
-		if ($session->has('arrayDimension')) 
+		if ($session->has('arrayDimension'))
 		{
 			$session->remove('arrayDimension');
 		}
@@ -198,11 +198,11 @@ class DefaultController extends Controller
 		/* - Redirection si aucune dimension choisie (fait avec jQuery à la place -> voir approche template)
 		if ($request->request->has('formDimSubmit') && !$request->request->has('equalapprochestype')) {
 			$previousUrl = $request->headers->get('referer');
-			
+
 			return $this->redirect($previousUrl);
 		}
 		*/
-		
+
 		// -- Initialisation des sessions et des variables
 		$action = $session->get('action');
 		$id_approche = $session->get('id_approche');
@@ -227,7 +227,7 @@ class DefaultController extends Controller
 		{
 			$dim_counter = $request->request->get('dim_counter');
 		}
-		
+
 
 		$cA = $this->get('translator')->trans('enonceA');
 		$cB = $this->get('translator')->trans('enonceB');
@@ -252,13 +252,13 @@ class DefaultController extends Controller
 		// On affiche les items correspondant à la dimension (itération sur l'array de session)
 		if ($dim_counter < $dimension_number)
 		{
-			
+
 			$item = $this->getDoctrine()
 					   ->getManager()
 					   ->getRepository('NTEEqualBundle:EqualDimensions')
 					   ->getDimCheckbox($arrayDimension[$dim_counter])
 			;
-			
+
 			$dimItem = $this->getDoctrine()
 					   ->getManager()
 					   ->getRepository('NTEEqualBundle:EqualDimensions')
@@ -272,7 +272,7 @@ class DefaultController extends Controller
 			;
 
 			$nbItems = count($my_items);
-		  
+
 			$form = $this->createForm(new EqualDimensionsType, $item);
 
 			if ($request->getMethod() == 'POST') {
@@ -286,12 +286,12 @@ class DefaultController extends Controller
 			$response = array();
 			for($i=0; $i<$nbItems; $i++)
 			{
-				if ($request->request->has('response'. $i)) 
+				if ($request->request->has('response'. $i))
 				{
 					$response[$i] = $request->request->get('response'. $i);
 				}
 			}
-  
+
 			if (isset($response)){
 				$session->set('response', $response);
 			}
@@ -311,7 +311,7 @@ class DefaultController extends Controller
 				$tt2 = 'item'.$i;
 				$response = $request->request->get($tt1);
 				$id_item = $request->request->get($tt2);
-			  
+
 				// Enregistrement des réponses
 				$res = new EqualResultats();
 				$res->setIdEtudiant($session->get('id_candidat'));
@@ -342,16 +342,16 @@ class DefaultController extends Controller
 				'nbItems' => count($my_items),
 				'page_eval' => $page_eval
 			));
-		} else 
+		} else
 		{
 			$session->set('action', 'register');
-			
+
 			/*
 			return $this->forward('NTEEqualBundle:Default:result', array(
 				'id_candidat' => $session->get('id_candidat')
 			));
 			*/
-			return $this->redirect($this->generateUrl('equal_result', 
+			return $this->redirect($this->generateUrl('equal_result',
 				array('approche_id' => $id_approche)
 			));
 		}
@@ -438,7 +438,7 @@ class DefaultController extends Controller
 				} else {
 					$check2 = '';
 				}
-				
+
 				$nb_question == 0 ? $moy = $points : $moy = $points/$nb_question;
 				$resultat_final .= "<strong>". $dim->getNom() ."</strong><br />";
 				$resultat_final .= "Score : ".$points." Point(s) " .$check2. "<br />";
