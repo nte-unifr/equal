@@ -1,6 +1,6 @@
 {#
  * Copyright 2014 Centre NTE <http://nte.unifr.ch>, Université de Fribourg, Suisse
- * 
+ *
  * This file is part of Equal+.
  *
  * Equal+ is free software: you can redistribute it and/or modify
@@ -12,7 +12,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with Equal+.  If not, see <http://www.gnu.org/licenses/>.
  #}
@@ -27,7 +27,7 @@
     <meta name="keywords" lang="fr" content="universit&eacute;, formation, suisse, fribourg, recherche, &eacute;tudes" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('bundles/nteequal/css/bootstrap.min.css') }}" type="text/css" media="all" />
         <link rel="stylesheet" href="{{ asset('bundles/nteequal/css/bootstrap-responsive.min.css') }}" type="text/css" media="all" />
@@ -42,7 +42,7 @@
 
     {% block javascripts %}
         <script type="text/javascript" src="{{ asset('bundles/nteequal/js/jquery-1.8.3.min.js') }}"></script>
-   
+
         <script src="{{ asset('bundles/nteequal/js/bootstrap.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('bundles/nteequal/js/popup.js') }}" type="text/javascript"></script>
     {% endblock %}
@@ -89,21 +89,21 @@
                 <div class="navbar hidden-desktop">
                     <div class="navbar-inner">
                         <div class="container">
-                         
+
                             <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
                             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             </a>
-                             
+
                             <!-- Be sure to leave the brand out there if you want it shown -->
                                 <a class="brand" href="{{ path('equal_home') }}">{{ 'projet_title'|trans }}</a>
-                             
+
                             <!-- Everything you want hidden at 940px or less, place within here -->
                             <div class="nav-collapse collapse">
                             <!-- .nav, .navbar-search, .navbar-form, etc -->
-                                
+
                                 {% block equal_menu_top2 %}
 					{{ render(controller('NTEEqualBundle:Default:generateMenuResp', { 'top': false })) }}
                                 {% endblock %}
@@ -113,11 +113,11 @@
                                     <li><a href="http://nte.unifr.ch">Centre NTE</a></li>
                                 </ul>
                             </div>
-                         
+
                         </div>
                     </div>
                 </div><!-- end:navig 2 -->
-            
+
                 <!-- start:row -->
                 <div class="row-fluid">
                     <div class="span3 visible-desktop">
@@ -132,7 +132,7 @@
                                                 {% block equal_menu_left %}
 													{{ render(controller('NTEEqualBundle:Default:generateMenu', { 'top': false })) }}
                                                 {% endblock%}
-													
+
 											</div>
 							   		</div><!-- end:box menu2-->
 									<br><br>
@@ -141,25 +141,25 @@
 											<div class="box001_content">
 												<div class="illustrationBox" align="center"></div>
 												<img src="{{ asset('bundles/nteequal/images/emailButton.png') }}" align="texttop" />&nbsp;<a href="mailto:didactic@unifr.ch">didactic@unifr.ch</a><br>
-											</div>		
+											</div>
 							   		</div>
     							</div><!-- end:menu-->
                             {% endblock %}
                         <!-- end:colonneLeft -->
                     </div>
-                    
-                    
+
+
                     <div class="span9">
                         <!-- start:colonneRight -->
                         <div id="content2">
                             {% block equal_content %}
-                                
+
                             {% endblock %}
                         </div><!-- end:colonneRight -->
                     </div>
-                    
+
                     <div class="span3 visible-phone">
-                        
+
                     </div>
 
                 </div><!-- end:row -->
@@ -180,9 +180,25 @@
                         </div><!-- end:signature -->
                     </div>
                 </div><!-- end:row -->
-                
+
                 <!-- end:main -->
 
             </div><!-- end:webpage -->
+            <!-- Piwik -->
+            <script type="text/javascript">
+              var _paq = _paq || [];
+              _paq.push(["setDomains", ["*.elearning.unifr.ch/equal"]]);
+              _paq.push(['trackPageView']);
+              _paq.push(['enableLinkTracking']);
+              (function() {
+                var u="//elearning.unifr.ch/analytics/";
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', '5']);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+              })();
+            </script>
+            <noscript><p><img src="//elearning.unifr.ch/analytics/piwik.php?idsite=5" style="border:0;" alt="" /></p></noscript>
+            <!-- End Piwik Code -->
     </body>
 </html>
